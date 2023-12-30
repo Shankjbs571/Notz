@@ -1,6 +1,10 @@
 # Notz
 
-A new Flutter project.
+Notz is a simple and intuitive todo list app built with Flutter. It allows users to create and manage tasks and notes in one place. Notz aims to be user-friendly and efficient, providing a seamless experience for organizing daily tasks and ideas.
+
+This project showcases my progress in Flutter development!
+
+# A new Flutter project.
 
 ## Getting Started
 
