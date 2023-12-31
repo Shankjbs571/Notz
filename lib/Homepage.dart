@@ -15,6 +15,9 @@ class Homepage extends StatefulWidget {
 }
 
 class _Homepagestate extends State<Homepage> {
+  //text controller
+  final _controller = TextEditingController();
+
   List notzlist = [
     ["task1", true],
     ["task2", false]
@@ -26,13 +29,33 @@ class _Homepagestate extends State<Homepage> {
     });
   }
 
+  void saveNewTask() {
+    setState(() {
+      notzlist.add([_controller.text, false]);
+      _controller.clear();
+    });
+    Navigator.of(context).pop();
+  }
+
   void createNewTask() {
     showDialog(
       context: context,
       builder: (context) {
-        return TaskBox();
+        return TaskBox(
+          controller: _controller,
+          onSave: saveNewTask,
+          onCancel: () {
+            Navigator.of(context).pop();
+          },
+        );
       },
     );
+  }
+
+  void deleteTask(int index) {
+    setState(() {
+      notzlist.removeAt(index);
+    });
   }
 
   @override
@@ -57,6 +80,7 @@ class _Homepagestate extends State<Homepage> {
                 taskName: notzlist[index][0],
                 taskCompleted: notzlist[index][1],
                 onChanged: (value) => checkboxchanged(value, index),
+                deletefunction: (context) => deleteTask(index),
               );
             },
           )),

@@ -2,7 +2,15 @@ import 'package:flutter/material.dart';
 import 'Utils/mybutton.dart';
 
 class TaskBox extends StatelessWidget {
-  const TaskBox({super.key});
+  final controller;
+  VoidCallback onSave;
+  VoidCallback onCancel;
+
+  TaskBox(
+      {super.key,
+      required this.controller,
+      required this.onSave,
+      required this.onCancel});
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +21,7 @@ class TaskBox extends StatelessWidget {
         child:
             Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           TextField(
+            controller: controller,
             decoration: InputDecoration(
                 border: OutlineInputBorder(), hintText: "Add a new Task"),
           ),
@@ -20,11 +29,11 @@ class TaskBox extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               //save
-              Mybutton(text: "Save", onpressed: () {}),
+              Mybutton(text: "Save", onpressed: onSave),
               //
               const SizedBox(width: 8),
               //cancel
-              Mybutton(text: "Cancel", onpressed: () {}),
+              Mybutton(text: "Cancel", onpressed: onCancel),
             ],
           )
         ]),
